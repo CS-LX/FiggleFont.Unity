@@ -1,0 +1,9 @@
+{
+  "name": "FiggleFont.Unity.Editor.Tests",
+  "rootNamespace": "Figgle.Unity.Tests",
+  "references": ["FiggleFont.Unity.Editor"],
+  "includePlatforms": ["Editor"],
+  "overrideReferences": true,
+  "precompiledReferences": ["Figgle.dll", "nunit.framework.dll"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

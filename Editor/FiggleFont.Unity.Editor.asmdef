@@ -1,0 +1,8 @@
+{
+  "name": "FiggleFont.Unity.Editor",
+  "rootNamespace": "Figgle.Unity.Editor",
+  "includePlatforms": ["Editor"],
+  "overrideReferences": true,
+  "precompiledReferences": ["Figgle.dll"],
+  "autoReferenced": true
+}

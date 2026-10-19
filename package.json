@@ -1,0 +1,13 @@
+{
+  "name": "com.linxium.figglefont.unity",
+  "version": "0.1.0",
+  "displayName": "FiggleFont.Unity",
+  "description": "FIGlet (.flf) font importing and live UI Toolkit previews for Figgle. Requires Figgle.dll installed separately via NuGetForUnity or manually.",
+  "unity": "2022.3",
+  "keywords": ["figgle", "figlet", "ascii", "font", "text"],
+  "author": { "name": "Linxium", "url": "https://github.com/CS-LX" },
+  "license": "MIT",
+  "documentationUrl": "https://github.com/CS-LX/FiggleFont.Unity#readme",
+  "changelogUrl": "https://github.com/CS-LX/FiggleFont.Unity/blob/v0.1.0/CHANGELOG.md",
+  "licensesUrl": "https://github.com/CS-LX/FiggleFont.Unity/blob/v0.1.0/LICENSE.md"
+}

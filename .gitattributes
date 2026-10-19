@@ -1,0 +1,7 @@
+* text=auto
+*.cs text eol=lf
+*.json text eol=lf
+*.asmdef text eol=lf
+*.md text eol=lf
+*.meta text eol=lf whitespace=-blank-at-eol
+*.flf text eol=lf
