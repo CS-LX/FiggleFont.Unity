@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Keep invalid-font import diagnostics within the yielding test before checking expected logs.
+- Use separate temporary asset paths per test and yield after cleanup to isolate import notifications.
+
 ## 0.1.0
 
 - Import `.flf` files as Unity `TextAsset` resources with Figgle format validation.

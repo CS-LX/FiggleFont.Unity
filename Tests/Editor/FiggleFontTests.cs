@@ -20,12 +20,18 @@ namespace Figgle.Unity.Tests
         public void SetUp()
         {
             source = File.ReadAllText(FileUtil.GetPhysicalPath(FixturePath));
-            path = AssetDatabase.GenerateUniqueAssetPath("Assets/FiggleFontTest.flf");
+            // Do not reuse an asset identity whose import diagnostics may still be queued.
+            path = $"Assets/FiggleFontTest_{System.Guid.NewGuid():N}.flf";
             Import(source);
         }
 
-        [TearDown]
-        public void TearDown() => AssetDatabase.DeleteAsset(path);
+        [UnityTearDown]
+        public IEnumerator TearDown()
+        {
+            if (!string.IsNullOrEmpty(path)) AssetDatabase.DeleteAsset(path);
+            // Let asset deletion and delayed import notifications settle before the next test.
+            yield return null;
+        }
 
         [Test]
         public void Import_PreservesUnicodeSourceAsTextAsset()
@@ -59,11 +65,14 @@ namespace Figgle.Unity.Tests
             Assert.That(newFileId, Is.EqualTo(fileId));
         }
 
-        [Test]
-        public void InvalidFont_ReportsErrorAndKeepsSourceAvailableForRepair()
+        [UnityTest]
+        public IEnumerator InvalidFont_ReportsErrorAndKeepsSourceAvailableForRepair()
         {
             LogAssert.Expect(LogType.Error, new Regex("Invalid FIGlet font:"));
             Import("invalid font");
+            // ForceSynchronousImport completes the import, not necessarily the queued log delivery.
+            yield return null;
+            LogAssert.NoUnexpectedReceived();
             Assert.That(AssetDatabase.LoadAssetAtPath<TextAsset>(path).text, Is.EqualTo("invalid font"));
             var editor = UnityEditor.Editor.CreateEditor(AssetImporter.GetAtPath(path));
             try
